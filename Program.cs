@@ -1,4 +1,6 @@
-﻿public class Program
+﻿using System;
+
+public class Program
 {
     public static void Main()
     {
@@ -43,10 +45,10 @@
         // System.Console.WriteLine();
 
         // Demo 6: OOP
-        DemoOOP.Run();
+        // DemoOOP.Run();
         // System.Console.WriteLine();
 
         // Demo 7: Menu Login
-        // DemoExampleApp.Run();
+        DemoExampleApp.Run();
     }
 }

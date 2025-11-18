@@ -1,93 +1,90 @@
 using System;
-using System.Collections.Generic;
 
 public class User
 {
-    public string Username { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
-    public string Role { get; set; } = string.Empty;
+    public string Username { get; set; }
+    public string Password { get; set; }
+    
+    public User(string username, string password)
+    {
+        Username = username;
+        Password = password;
+    }
 }
 
 public static class DemoExampleApp
 {
     private static List<User> users = new List<User>
     {
-        new User { Username = "admin", Password = "admin123", Role = "Admin" },
-        new User { Username = "user", Password = "user123", Role = "User" }
+        new User("admin", "123456"),
+        new User("john", "password"),
+        new User("jane", "qwerty")
     };
-
-    private static User? currentUser = null;
-
+    
+    private static User currentUser = null;
+    
     public static void Run()
     {
-        while (true)
-        {
-            if (currentUser == null)
-            {
-                ShowLoginMenu();
-            }
-            else
-            {
-                ShowMainMenu();
-            }
-        }
+        StartApp();
     }
-
-    private static void ShowLoginMenu()
+    
+    private static void StartApp()
     {
-        Console.Clear();
-        Console.WriteLine("╔════════════════════════════════╗");
-        Console.WriteLine("║          Example App           ║");
-        Console.WriteLine("╚════════════════════════════════╝");
-        Console.WriteLine();
-        Console.Write("Username: ");
-        string username = Console.ReadLine() ?? "";
-        Console.Write("Password: ");
-        string password = Console.ReadLine() ?? "";
-
-        var user = users.Find(u => u.Username == username && u.Password == password);
-        
-        if (user != null)
+        if (currentUser == null)
         {
-            currentUser = user;
-            Console.WriteLine($"\n✓ Login berhasil! Selamat datang, {user.Username} ({user.Role})");
-            Console.WriteLine("Tekan tombol untuk lanjut...");
-            Console.ReadKey();
+            Login();
         }
         else
         {
-            Console.WriteLine("\n✗ Username atau password salah!");
-            Console.WriteLine("Tekan tombol untuk coba lagi...");
-            Console.ReadKey();
+            ShowMenu();
         }
     }
-
-    private static void ShowMainMenu()
+    
+    private static void Login()
     {
         Console.Clear();
-        Console.WriteLine("╔════════════════════════════════╗");
-        Console.WriteLine($"║  Menu Utama - {currentUser!.Role,-15} ║");
-        Console.WriteLine("╚════════════════════════════════╝");
-        Console.WriteLine($"User: {currentUser.Username}");
-        Console.WriteLine();
-        Console.WriteLine("1. Lihat Profil");
-        Console.WriteLine("2. Data Karyawan");
+        Console.WriteLine("=== LOGIN ===");
+        Console.Write("Username: ");
+        string username = Console.ReadLine();
         
-        if (currentUser.Role == "Admin")
+        Console.Write("Password: ");
+        string password = Console.ReadLine();
+        
+        // Find user
+        foreach (var user in users)
         {
-            Console.WriteLine("3. Kelola User (Admin)");
-            Console.WriteLine("4. Laporan (Admin)");
+            if (user.Username == username && user.Password == password)
+            {
+                currentUser = user;
+                Console.WriteLine($"Welcome, {username}!");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                ShowMenu();
+                return;
+            }
         }
         
-        Console.WriteLine("5. Ganti Password");
+        Console.WriteLine("Invalid username or password!");
+        Console.WriteLine("Press any key to try again...");
+        Console.ReadKey();
+        Login(); // Recursively call login again
+    }
+    
+    private static void ShowMenu()
+    {
+        Console.Clear();
+        Console.WriteLine($"=== MAIN MENU - Hello {currentUser.Username} ===");
+        Console.WriteLine("1. View Profile");
+        Console.WriteLine("2. Change Password");
+        Console.WriteLine("3. View Users List");
+        Console.WriteLine("4. About System");
         Console.WriteLine("0. Logout");
-        Console.WriteLine();
-        Console.Write("Pilih menu: ");
+        Console.Write("Select option: ");
         
-        string choice = Console.ReadLine() ?? "";
+        string choice = Console.ReadLine();
         ProcessMenu(choice);
     }
-
+    
     private static void ProcessMenu(string choice)
     {
         Console.Clear();
@@ -95,91 +92,84 @@ public static class DemoExampleApp
         switch (choice)
         {
             case "1":
-                ShowProfile();
+                ViewProfile();
                 break;
             case "2":
-                ShowEmployeeData();
-                break;
-            case "3":
-                if (currentUser!.Role == "Admin")
-                    ManageUsers();
-                else
-                    Console.WriteLine("✗ Akses ditolak! Menu hanya untuk Admin.");
-                break;
-            case "4":
-                if (currentUser!.Role == "Admin")
-                    ShowReports();
-                else
-                    Console.WriteLine("✗ Akses ditolak! Menu hanya untuk Admin.");
-                break;
-            case "5":
                 ChangePassword();
                 break;
+            case "3":
+                ViewUsersList();
+                break;
+            case "4":
+                AboutSystem();
+                break;
             case "0":
-                currentUser = null;
-                Console.WriteLine("✓ Logout berhasil!");
-                Console.ReadKey();
+                Logout();
                 return;
             default:
-                Console.WriteLine("✗ Pilihan tidak valid!");
+                Console.WriteLine("Invalid option!");
                 break;
         }
         
-        Console.WriteLine("\nTekan tombol untuk kembali...");
+        Console.WriteLine("\nPress any key to continue...");
         Console.ReadKey();
+        ShowMenu(); // Return to menu
     }
-
-    private static void ShowProfile()
+    
+    private static void ViewProfile()
     {
-        Console.WriteLine("═══ PROFIL USER ═══");
-        Console.WriteLine($"Username: {currentUser!.Username}");
-        Console.WriteLine($"Role: {currentUser.Role}");
-        Console.WriteLine($"Status: Aktif");
+        Console.WriteLine("=== USER PROFILE ===");
+        Console.WriteLine($"Username: {currentUser.Username}");
+        Console.WriteLine($"Status: Active");
+        Console.WriteLine($"Login Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
     }
-
-    private static void ShowEmployeeData()
-    {
-        Console.WriteLine("═══ DATA KARYAWAN ═══");
-        Console.WriteLine("1. Andi - Developer - 25 tahun");
-        Console.WriteLine("2. Budi - Designer - 28 tahun");
-        Console.WriteLine("3. Citra - Manager - 32 tahun");
-    }
-
-    private static void ManageUsers()
-    {
-        Console.WriteLine("═══ KELOLA USER (ADMIN) ═══");
-        Console.WriteLine("Total User Terdaftar: " + users.Count);
-        Console.WriteLine();
-        foreach (var user in users)
-        {
-            Console.WriteLine($"- {user.Username} ({user.Role})");
-        }
-    }
-
-    private static void ShowReports()
-    {
-        Console.WriteLine("═══ LAPORAN (ADMIN) ═══");
-        Console.WriteLine("Laporan Bulanan: November 2025");
-        Console.WriteLine("Total Transaksi: 150");
-        Console.WriteLine("Pendapatan: Rp 50.000.000");
-    }
-
+    
     private static void ChangePassword()
     {
-        Console.WriteLine("═══ GANTI PASSWORD ═══");
-        Console.Write("Password Lama: ");
-        string oldPass = Console.ReadLine() ?? "";
+        Console.WriteLine("=== CHANGE PASSWORD ===");
+        Console.Write("Current Password: ");
+        string oldPassword = Console.ReadLine();
         
-        if (oldPass == currentUser!.Password)
+        if (oldPassword == currentUser.Password)
         {
-            Console.Write("Password Baru: ");
-            string newPass = Console.ReadLine() ?? "";
-            currentUser.Password = newPass;
-            Console.WriteLine("✓ Password berhasil diubah!");
+            Console.Write("New Password: ");
+            string newPassword = Console.ReadLine();
+            currentUser.Password = newPassword;
+            Console.WriteLine("Password changed successfully!");
         }
         else
         {
-            Console.WriteLine("✗ Password lama salah!");
+            Console.WriteLine("Wrong current password!");
         }
+    }
+    
+    private static void ViewUsersList()
+    {
+        Console.WriteLine("=== USERS LIST ===");
+        Console.WriteLine($"Total Users: {users.Count}");
+        Console.WriteLine();
+        
+        for (int i = 0; i < users.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {users[i].Username}");
+        }
+    }
+    
+    private static void AboutSystem()
+    {
+        Console.WriteLine("=== ABOUT SYSTEM ===");
+        Console.WriteLine("Simple Login System v1.0");
+        Console.WriteLine("Created for Interview Demo");
+        Console.WriteLine($"Current Date: {DateTime.Now:yyyy-MM-dd}");
+        Console.WriteLine("Language: C#");
+    }
+    
+    private static void Logout()
+    {
+        currentUser = null;
+        Console.WriteLine("Logged out successfully!");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+        StartApp(); // Restart the app
     }
 }
