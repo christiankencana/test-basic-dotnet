@@ -30,25 +30,33 @@ public class Program
         // System.Console.WriteLine();
 
         // Demo 5: Sorting
-        // int[] arr1 = { 64, 34, 25, 12, 22, 11, 90 };
-        // DemoSorting.BubbleSortAsc(arr1);
-        // DemoSorting.BubbleSortDesc(1);
-        // DemoSorting.QuickSortAsc(arr1, 0, arr1.Length - 1);
-        // DemoSorting.QuickSortDesc(arr1, 0, arr1.Length - 1);
-        // DemoSorting.MergeSortAsc(arr1, 0, arr1.Length - 1);
-        // DemoSorting.MergeSortDesc(arr1, 0, arr1.Length - 1);
-        // DemoSorting.InsertionSortAsc(arr1);
-        // DemoSorting.InsertionSortDesc(arr1);
-        // DemoSorting.SelectionSortAsc(arr1);
-        // DemoSorting.SelectionSortDesc(arr1);
-        // System.Console.WriteLine($"Sort Asc: {string.Join(", ", arr1)}");
-        // System.Console.WriteLine();
+        int[] arr1 = { 64, 34, 25, 12, 22, 11, 90 };
+        DemoSorting.BubbleSortAsc((int[])arr1.Clone());
+        DemoSorting.BubbleSortDesc((int[])arr1.Clone());
+        
+        int[] arr2 = { 64, 34, 25, 12, 22, 11, 90 };
+        DemoSorting.QuickSortAsc((int[])arr2.Clone(), 0, arr2.Length - 1);
+        DemoSorting.QuickSortDesc((int[])arr2.Clone(), 0, arr2.Length - 1);
+        
+        int[] arr3 = { 64, 34, 25, 12, 22, 11, 90 };
+        DemoSorting.MergeSortAsc((int[])arr3.Clone(), 0, arr3.Length - 1);
+        DemoSorting.MergeSortDesc((int[])arr3.Clone(), 0, arr3.Length - 1);
+        
+        int[] arr4 = { 64, 34, 25, 12, 22, 11, 90 };
+        DemoSorting.InsertionSortAsc((int[])arr4.Clone());
+        DemoSorting.InsertionSortDesc((int[])arr4.Clone());
+        
+        int[] arr5 = { 64, 34, 25, 12, 22, 11, 90 };
+        DemoSorting.SelectionSortAsc((int[])arr5.Clone());
+        DemoSorting.SelectionSortDesc((int[])arr5.Clone());
+        
+        System.Console.WriteLine();
 
         // Demo 6: OOP
         // DemoOOP.Run();
         // System.Console.WriteLine();
 
         // Demo 7: Menu Login
-        DemoExampleApp.Run();
+        // DemoExampleApp.Run();
     }
 }

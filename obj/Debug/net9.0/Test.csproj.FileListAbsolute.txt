@@ -41,3 +41,18 @@ D:\My Project\test-basic-dotnet\obj\Debug\net9.0\refint\Test.dll
 D:\My Project\test-basic-dotnet\obj\Debug\net9.0\Test.pdb
 D:\My Project\test-basic-dotnet\obj\Debug\net9.0\Test.genruntimeconfig.cache
 D:\My Project\test-basic-dotnet\obj\Debug\net9.0\ref\Test.dll
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.AssemblyInfoInputs.cache
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.AssemblyInfo.cs
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.csproj.CoreCompileInputs.cache
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.sourcelink.json
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.dll
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\refint\Test.dll
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.pdb
+D:\Project\test-basic-dotnet\bin\Debug\net9.0\Test.exe
+D:\Project\test-basic-dotnet\bin\Debug\net9.0\Test.deps.json
+D:\Project\test-basic-dotnet\bin\Debug\net9.0\Test.runtimeconfig.json
+D:\Project\test-basic-dotnet\bin\Debug\net9.0\Test.dll
+D:\Project\test-basic-dotnet\bin\Debug\net9.0\Test.pdb
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\Test.genruntimeconfig.cache
+D:\Project\test-basic-dotnet\obj\Debug\net9.0\ref\Test.dll

@@ -40,6 +40,8 @@ public static class DemoSorting
                 }
             }
         }
+
+        Console.WriteLine($"Sort Asc: {string.Join(", ", arr)}");
     }
 
     public static void BubbleSortDesc(int[] arr)
@@ -57,6 +59,8 @@ public static class DemoSorting
                 }
             }
         }
+
+        Console.WriteLine($"Sort Desc: {string.Join(", ", arr)}");
     }
 
     // 2. Quick Sort
@@ -68,6 +72,10 @@ public static class DemoSorting
             QuickSortAsc(arr, low, pi - 1);
             QuickSortAsc(arr, pi + 1, high);
         }
+        
+        // Print only when at the top-level call
+        if (low == 0 && high == arr.Length - 1)
+            Console.WriteLine($"Sort Asc: {string.Join(", ", arr)}");
     }
 
     private static int PartitionAsc(int[] arr, int low, int high)
@@ -101,6 +109,10 @@ public static class DemoSorting
             QuickSortDesc(arr, low, pi - 1);
             QuickSortDesc(arr, pi + 1, high);
         }
+        
+        // Print only when at the top-level call
+        if (low == 0 && high == arr.Length - 1)
+            Console.WriteLine($"Sort Desc: {string.Join(", ", arr)}");
     }
 
     private static int PartitionDesc(int[] arr, int low, int high)
@@ -136,6 +148,10 @@ public static class DemoSorting
             MergeSortAsc(arr, mid + 1, right);
             MergeAsc(arr, left, mid, right);
         }
+        
+        // Print only when at the top-level call
+        if (left == 0 && right == arr.Length - 1)
+            Console.WriteLine($"Sort Asc: {string.Join(", ", arr)}");
     }
 
     private static void MergeAsc(int[] arr, int left, int mid, int right)
@@ -175,6 +191,10 @@ public static class DemoSorting
             MergeSortDesc(arr, mid + 1, right);
             MergeDesc(arr, left, mid, right);
         }
+        
+        // Print only when at the top-level call
+        if (left == 0 && right == arr.Length - 1)
+            Console.WriteLine($"Sort Desc: {string.Join(", ", arr)}");
     }
 
     private static void MergeDesc(int[] arr, int left, int mid, int right)
@@ -221,6 +241,8 @@ public static class DemoSorting
             }
             arr[j + 1] = key;
         }
+        
+        Console.WriteLine($"Sort Asc: {string.Join(", ", arr)}");
     }
 
     public static void InsertionSortDesc(int[] arr)
@@ -238,6 +260,8 @@ public static class DemoSorting
             }
             arr[j + 1] = key;
         }
+        
+        Console.WriteLine($"Sort Desc: {string.Join(", ", arr)}");
     }
 
     // 6. Selection Sort
@@ -257,6 +281,8 @@ public static class DemoSorting
             arr[minIdx] = arr[i];
             arr[i] = temp;
         }
+        
+        Console.WriteLine($"Sort Asc: {string.Join(", ", arr)}");
     }
 
     public static void SelectionSortDesc(int[] arr)
@@ -275,5 +301,7 @@ public static class DemoSorting
             arr[maxIdx] = arr[i];
             arr[i] = temp;
         }
+        
+        Console.WriteLine($"Sort Desc: {string.Join(", ", arr)}");
     }
 }
