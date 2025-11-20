@@ -32,7 +32,7 @@ public static class DemoSorting
         {
             for (int j = 0; j < n - i - 1; j++)
             {
-                if (arr[j] > arr[j + 1])
+                if (arr[j] > arr[j + 1]) // changed here
                 {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
@@ -49,7 +49,7 @@ public static class DemoSorting
         {
             for (int j = 0; j < n - i - 1; j++)
             {
-                if (arr[j] < arr[j + 1]) // Ubah > menjadi <
+                if (arr[j] < arr[j + 1]) // changed here
                 {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
